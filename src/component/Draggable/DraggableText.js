@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useDrag } from 'react-dnd';
 
-const DraggableText = ({ id, text, left, top, font, moveText, updateText }) => {
+const DraggableText = ({ id, text, left, top, font, moveText, updateText, color, fontSize }) => {
   const [isEditing, setIsEditing] = useState(false);
   const textRef = useRef(null);
 
@@ -38,6 +38,8 @@ const DraggableText = ({ id, text, left, top, font, moveText, updateText }) => {
     border: isEditing ? '1px solid blue' : 'none',
     padding: '5px',
     fontFamily: font,
+    color: color,
+    fontSize: `${fontSize}px`,
   };
 
   return (

@@ -9,6 +9,8 @@ const App = () => {
   const [texts, setTexts] = useState([]);
   const [nextId, setNextId] = useState(1);
   const [selectedFont, setSelectedFont] = useState('Arial');
+  const [fontColor, setFontColor] = useState('black');
+  const [fontSize, setFontSize] = useState(18);
   const canvasRef = useRef(null);
 
   const [, drop] = useDrop({
@@ -56,9 +58,10 @@ const App = () => {
       <div style={{ flex: 2 }}>
         <div>
           <input 
+          style={{color:'cornsilk'}}
             type="file" 
             accept="image/*" 
-            onChange={e => {
+            onChange={(e) => {
               const file = e.target.files[0];
               if (file) {
                 const reader = new FileReader();
@@ -71,13 +74,13 @@ const App = () => {
         
         
         
-        <div style={{ marginTop: 190, marginBottom: 10 }}>
+        <div style={{ marginTop: 170, marginBottom: 10 }}>
           <Buttons onClick={addText} title="Add Text" />
         </div>
         
         
         
-        <div>
+        <div style={{marginBottom: 15}}>
           <select 
             value={selectedFont} 
             onChange={(e) => setSelectedFont(e.target.value)} 
@@ -99,8 +102,55 @@ const App = () => {
           </select>
         </div>
         
+
+        <div style={{marginBottom: 15}}>
+          <select 
+            value={fontColor} 
+            onChange={(e) => setFontColor(e.target.value)} 
+            style={{
+              padding: '8px 12px',
+              marginLeft: '10px',
+              fontSize: '14px',
+              border: '1px solid #ccc',
+              borderRadius: '4px',
+              backgroundColor: '#fff',
+              cursor: 'pointer'
+            }}
+          >
+            <option value="white">white</option>
+            <option value="black">black</option>
+            <option value="blue">blue</option>
+            <option value="green">green</option>
+            <option value="yellow">yellow</option>
+          </select>
+        </div>
+
+        <div>
+          <select 
+            value={fontSize} 
+            onChange={(e) => setFontSize(e.target.value)} 
+            style={{
+              padding: '8px 12px',
+              marginLeft: '10px',
+              fontSize: '14px',
+              border: '1px solid #ccc',
+              borderRadius: '4px',
+              backgroundColor: '#fff',
+              cursor: 'pointer'
+            }}
+          >
+            <option value="18">18</option>
+            <option value="22">22</option>
+            <option value="24">24</option>
+            <option value="27">27</option>
+            <option value="30">30</option>
+          </select>
+        </div>
         
-        <div style={{ marginTop: 200 }}>
+
+
+        
+        <div style={{ marginTop: 110 }}>
           <Buttons onClick={saveImage} title="Save Image" />
         
         </div>
@@ -112,6 +162,8 @@ const App = () => {
         image={image} 
         texts={texts} 
         selectedFont={selectedFont} 
+        selectedTextColor={fontColor} 
+        selectedFontSize={fontSize} 
         moveText={moveText} 
         updateText={updateText} 
         drop={drop} 

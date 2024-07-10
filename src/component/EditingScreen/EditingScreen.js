@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import DraggableText from '../Draggable/DraggableText';
 
-const EditingScreen = forwardRef(({ image, texts, selectedFont, moveText, updateText, drop }, ref) => (
+const EditingScreen = forwardRef(({ image, texts, selectedFont, moveText, updateText, drop, selectedTextColor, selectedFontSize }, ref) => (
   <div 
     ref={node => { drop(node); ref.current = node; }} 
     style={{ 
@@ -25,6 +25,8 @@ const EditingScreen = forwardRef(({ image, texts, selectedFont, moveText, update
         font={selectedFont} 
         moveText={moveText} 
         updateText={updateText} 
+        color={selectedTextColor}
+        fontSize={selectedFontSize}
       />
     ))}
   </div>
